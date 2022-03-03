@@ -1,0 +1,27 @@
+{
+   "type": "mysql",
+   "host": "db",
+   "port": 3306,
+   "username": "root",
+   "password": "dbpassword",
+   "database": "webhook",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/entity/**/*.ts",
+      "node_modules/lib-webhook/src/entity/**/*.ts"
+   ],
+   "migrations": [
+      "src/migration/**/*.ts",
+      "node_modules/lib-webhook/src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts",
+      "node_modules/lib-webhook/src/subscribers/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+   }
+}
