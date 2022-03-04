@@ -12,8 +12,6 @@ export class DispatchController {
     const app = await ApiControllerHelper.fetchApp(request, response);
 
     if (!app) {
-      response.status(404);
-      response.json({ error: 'application not found' });
       return;
     }
 
