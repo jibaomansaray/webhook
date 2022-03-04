@@ -19,6 +19,8 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+      "background": "ts-node src/backgroud/index.ts",
+      "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+      "dev": "npx nodemon"
    }
 }
