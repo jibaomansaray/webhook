@@ -1,6 +1,7 @@
 
 import {NextFunction, Request, Response} from "express";
 import { appRepo   } from '../repos'
+import { randomBytes } from 'crypto'
 
 export class AppController {
 
@@ -11,7 +12,7 @@ export class AppController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        const record = await this.repo.findOne(request.params.id);
+        const record = await this.repo.findOneByHash(request.params.id);
 
         if (record) {
             return record
@@ -22,13 +23,20 @@ export class AppController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        return this.repo.save(request.body);
+        const body = request.body;
+        body.hash = randomBytes(12).toString('hex');
+        return this.repo.save(body);
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const record = await this.repo.findOne(request.params.id);
+        const record = await this.repo.findOneByHash(request.params.id);
         if (record) {
-            return await this.repo.update(record.id, request.body);
+            const body = request.body;
+            if (body.hash) {
+                delete body.hash;
+            }
+
+            return await this.repo.update(record.id, body);
         } else {
             response.status(404);
             response.json({ error: 'not found' });
@@ -36,7 +44,7 @@ export class AppController {
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        const record = await this.repo.findOne(request.params.id);
+        const record = await this.repo.findOneByHash(request.params.id);
         return await this.repo.softRemove(record);
     }
 }
