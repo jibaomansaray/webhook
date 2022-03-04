@@ -2,11 +2,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  ManyToOne
 } from "typeorm";
 import { WebhookTopic } from "./WebhookTopic";
 
@@ -16,7 +16,7 @@ export class WebhookEvent {
   @PrimaryGeneratedColumn()
   id: number;  // ID column
 
-  @OneToOne(() => WebhookTopic)
+  @ManyToOne(() => WebhookTopic)
   @JoinColumn()
   topic: number;
 
