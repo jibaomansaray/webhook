@@ -1,5 +1,4 @@
 const Bull = require('bull');
-import { WebhookEvent } from '../entity/WebhookEvent';
 
 export const dispatchQueue = new Bull('webhook-dispatch-queue', {
   redis: {
