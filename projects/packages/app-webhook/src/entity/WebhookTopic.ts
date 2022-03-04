@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   JoinColumn,
-  OneToOne
+  ManyToOne
 } from "typeorm";
 import { WebhookApp } from "./WebhookApp";
 
@@ -22,7 +22,7 @@ export class WebhookTopic {
   @Column({ type: "text", nullable: true })
   example: string // an example of how the payload data may look
 
-  @OneToOne(() => WebhookApp, { nullable: false })
+  @ManyToOne(() => WebhookApp, { nullable: false })
   @JoinColumn()
   app: number;
 
