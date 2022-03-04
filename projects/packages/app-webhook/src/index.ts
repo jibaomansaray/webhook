@@ -5,6 +5,8 @@ import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
 
+const port = 3001;
+
 createConnection().then(async connection => {
 
     // create express app
@@ -24,24 +26,7 @@ createConnection().then(async connection => {
         });
     });
 
-    // setup express app here
-    // ...
-
-    // start express server
-    app.listen(3001);
-
-    // insert new users for test
-    /* await connection.manager.save(connection.manager.create(User, {
-        firstName: "Timber",
-        lastName: "Saw",
-        age: 27
-    }));
-    await connection.manager.save(connection.manager.create(User, {
-        firstName: "Phantom",
-        lastName: "Assassin",
-        age: 24
-    })); */
-
-    console.log("Express server has started on port 3001. Open http://localhost:3001/users to see results");
+    app.listen(port);
+    console.log(`Express server has started on port ${port}`);
 
 }).catch(error => console.log(error));
