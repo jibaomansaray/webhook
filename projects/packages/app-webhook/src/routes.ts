@@ -1,9 +1,9 @@
-import { EntityRepository } from "typeorm";
 import { AppController } from "./controller/AppController";
 import { DeliveryController } from "./controller/DeliveryController";
 import { EventController } from './controller/EventController';
 import { TopicController } from './controller/TopicController';
 import { DispatchController } from './controller/DispatchController';
+import { EndpointController } from './controller/EndpointController';
 
 const generateRoutes = (endpoint: string, controller: unknown, viaApp: boolean = false) => {
 
@@ -57,10 +57,10 @@ const dispatchRoutes = [
 ];
 
 export const Routes = [
+    ...dispatchRoutes,
     ...generateRoutes('api/apps', AppController),
     ...generateRoutes('api/deliveries', DeliveryController, true),
-    ...generateRoutes('api/endpoints', EntityRepository, true),
+    ...generateRoutes('api/endpoints',  EndpointController , true),
     ...generateRoutes('api/events', EventController, true),
     ...generateRoutes('api/topics', TopicController, true),
-    ...dispatchRoutes,
 ]
