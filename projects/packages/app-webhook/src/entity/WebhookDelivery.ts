@@ -1,5 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn, VersionColumn, DeleteDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  VersionColumn,
+  DeleteDateColumn,
+  ManyToOne
+} from "typeorm";
 import { WebhookEndpoint } from "./WebhookEndpoint";
+import { WebhookEvent } from "./WebhookEvent";
 
 @Entity()
 export class WebhookDelivery {
