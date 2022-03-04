@@ -8,16 +8,13 @@
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts",
-      "node_modules/lib-webhook/src/entity/**/*.ts"
+      "src/entity/**/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts",
-      "node_modules/lib-webhook/src/migration/**/*.ts"
+      "src/migration/**/*.ts"
    ],
    "subscribers": [
-      "src/subscriber/**/*.ts",
-      "node_modules/lib-webhook/src/subscribers/**/*.ts"
+      "src/subscriber/**/*.ts"
    ],
    "cli": {
       "entitiesDir": "src/entity",
