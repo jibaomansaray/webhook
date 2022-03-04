@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
+import { WebhookTopic } from "../entity/WebhookTopic";
 import { dispatchEvent } from "../queue";
 import { appRepo, topicRepo, eventRepo } from '../repos'
 import { ApiControllerHelper } from "./ApiControllerHelper";
 
 export class DispatchController {
-  private theAppRepo = appRepo();
   private theTopicRepo = topicRepo();
   private theEventRepo = eventRepo();
 
