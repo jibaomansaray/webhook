@@ -4,8 +4,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  ManyToOne,
+  JoinColumn
 } from "typeorm";
+import { WebhookApp } from "./WebhookApp";
+import { WebhookTopic } from "./WebhookTopic";
 
 @Entity()
 export class WebhookEndpoint {
@@ -21,6 +25,14 @@ export class WebhookEndpoint {
 
   @Column({nullable: true })
   key: string; // public key for the endpoint
+
+  @ManyToOne(() => WebhookTopic, { nullable: false })
+  @JoinColumn()
+  topic: number
+
+  @ManyToOne(()=> WebhookApp, { nullable: false })
+  @JoinColumn()
+  app: number;
 
   @CreateDateColumn()
   createdAt: Date;
