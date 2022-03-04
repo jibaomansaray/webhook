@@ -22,21 +22,17 @@ export class EventController {
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
-    return this.repo.save(request.body);
+    response.status(400);
+    response.json({ error: 'use the "dispatches" endpoint' });
   }
 
   async update(request: Request, response: Response, next: NextFunction) {
-    const record = await this.repo.findOne(request.params.id);
-    if (record) {
-      return await this.repo.update(record.id, request.body);
-    } else {
-      response.status(404);
-      response.json({ error: 'not found' });
-    }
+    response.status(400);
+    response.json({ error: 'cannot update a dispatched event' });
   }
 
-  async remove(request: Request, response: Response, next: NextFunction) {
-    const record = await this.repo.findOne(request.params.id);
-    return await this.repo.softRemove(record);
+  remove(request: Request, response: Response, next: NextFunction) {
+    response.status(400);
+    response.json({ error: 'cannot delete a dispatched event' });
   }
 }
