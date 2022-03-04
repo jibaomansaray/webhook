@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn, VersionColumn, DeleteDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  BeforeInsert
+} from "typeorm";
 
 @Entity()
 export class WebhookApp {
@@ -9,7 +17,10 @@ export class WebhookApp {
   @Column()
   name: string;
 
-  @Column({type: "text", nullable: true})
+  @Column()
+  hash: string;
+
+  @Column({ type: "text", nullable: true })
   description: string;
 
   @CreateDateColumn()
