@@ -18,9 +18,13 @@ export class WebhookDelivery {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => WebhookEndpoint )
+  @ManyToOne(() => WebhookEndpoint, { nullable: false })
   @JoinColumn()
   endpoint: number;
+
+  @ManyToOne(() => WebhookEvent)
+  @JoinColumn()
+  event: number;
 
   @Column()
   status: string;
