@@ -27,7 +27,14 @@ export class DispatchController {
       return;
     }
 
-    const topic = await this.theTopicRepo.findOneByNameAndApp(request.body.topic, app);
+    let topic: WebhookTopic;
+
+    if (!isNaN(request.body.topic)) {
+      topic = await this.theTopicRepo.findOneByIdAndApp(request.body.topic, app);
+    } else {
+      topic = await this.theTopicRepo.findOneByNameAndApp(request.body.topic, app);
+    }
+
 
     if (!topic) {
       response.status(404);
