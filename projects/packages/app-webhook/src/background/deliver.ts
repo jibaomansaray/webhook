@@ -142,8 +142,8 @@ export const deliver = async (): Promise<boolean> => {
         await processPending();
         await processFailing();
         resolve(true);
-      } catch (e) {
-        reject(e)
+      } catch (_e) {
+        resolve(true);
       }
     })();
   });

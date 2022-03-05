@@ -44,7 +44,6 @@ createConnection().then(async (connection) => {
 
   // start broadcasting
   broadcastQueue.add({});
-  // broadcastQueue.add({}, { repeat: { cron: '* * * * *' } });
 
 })
 
