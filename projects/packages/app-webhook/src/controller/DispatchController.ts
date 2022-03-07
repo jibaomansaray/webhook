@@ -43,7 +43,7 @@ export class DispatchController {
     }
 
     const event = await this.theEventRepo.save({
-      payload: JSON.stringify(request.body.payload),
+      payload: JSON.stringify({ topic: topic.name, payload: request.body.payload }),
       topic: topic.id
     });
 
