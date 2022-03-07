@@ -25,6 +25,10 @@ io.on('connection', (socket) => {
     delete clients[socket.id];
   });
 
+  socket.on('uid', (id) => {
+    socket.data.webhook_id = id;
+  });
+
   // add the new socket to the client object
   clients[socket.id] = socket;
 })
@@ -43,14 +47,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-webhookRouter.post('/', (req, resp) => {
+webhookRouter.post('/:uid', (req, resp) => {
   resp.status(201);
   resp.json({
     success: true
   });
 
-  Object.values(clients).forEach((socket) => { 
-    socket.emit('new_payload', req.body);
+  const uid = req.params.uid;
+
+  Object.values(clients).every((socket) => {
+    if (socket.data.webhook_id == uid) {
+      socket.emit('new_payload', req.body);
+      return false;
+    }
+    return true;
   });
 });
 
