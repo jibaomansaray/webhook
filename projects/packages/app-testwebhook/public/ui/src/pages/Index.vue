@@ -7,15 +7,12 @@
     <div class="col-12 row q-mt-sm">
       <div class="col-3">
         <q-list bordered separator  v-if="payload.length">
-      <q-item clickable v-ripple v-for="(item, index) in payload" :key="index" @click="onClick(index)">
+      <q-item v-for="(item, index) in payload" :key="index" >
          <q-item-section>
-          <q-item-label>{{ item.topic }}</q-item-label>
-          <!-- <q-item-label caption>5 min ago</q-item-label> -->
-        </q-item-section>
-
-        <q-item-section side top>
-          <q-btn icon="close" color="red" dense flat @click="onRemove(index)" class="q-pa-none">
-          </q-btn>
+           <q-item-label>
+            <q-btn @click="onClick(index)" flat no-caps class="q-mr-lg" > {{ item.topic }}</q-btn>
+            <q-btn icon="close" color="red" dense flat @click="onRemove(index)" size="xs" class="q-pa-none right"></q-btn>
+           </q-item-label>
         </q-item-section>
       </q-item>
       </q-list>
@@ -43,6 +40,8 @@ export default defineComponent({
     const url = ref(window.location.origin)
     const prefix: string = LocalStorage.getItem('prefix') || uid()
 
+    let activePayloadIndex = -1
+
     LocalStorage.set('prefix', prefix)
     url.value += `/webhook/${prefix}`
 
@@ -61,11 +60,15 @@ export default defineComponent({
     })
 
     const onClick = (index: number) => {
+      activePayloadIndex = index
       activePayload.data = JSON.stringify(payload[index], undefined, 2).trim()
     }
 
     const onRemove = (index: number) => {
       payload.splice(index, 1)
+      if (activePayloadIndex === index) {
+        activePayload.data = null
+      }
     }
 
     const onClear = () => {
