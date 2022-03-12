@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datastore", "Datastore\Datastore.csproj", "{B3160799-34FA-493A-91C8-96E288541693}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsApi", "TbarpetsApi\TbarpetsApi.csproj", "{4FCC70DC-C0D4-4BAC-9E16-558C7557CD1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsConsole", "TbarpetsConsole\TbarpetsConsole.csproj", "{AA0FFF8D-7AFC-4CE5-AAD1-337216AFCC77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsContract", "TbarpetsContract\TbarpetsContract.csproj", "{3BE254C1-B49D-45E9-9BBC-524680AC898A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3160799-34FA-493A-91C8-96E288541693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3160799-34FA-493A-91C8-96E288541693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3160799-34FA-493A-91C8-96E288541693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3160799-34FA-493A-91C8-96E288541693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FCC70DC-C0D4-4BAC-9E16-558C7557CD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FCC70DC-C0D4-4BAC-9E16-558C7557CD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FCC70DC-C0D4-4BAC-9E16-558C7557CD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FCC70DC-C0D4-4BAC-9E16-558C7557CD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA0FFF8D-7AFC-4CE5-AAD1-337216AFCC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA0FFF8D-7AFC-4CE5-AAD1-337216AFCC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA0FFF8D-7AFC-4CE5-AAD1-337216AFCC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA0FFF8D-7AFC-4CE5-AAD1-337216AFCC77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
