@@ -5,7 +5,7 @@ namespace TbarpetsContract.Repositories;
 
 public interface IOwnerRepository
 {
-  public IOwnerModel Save(IOwnerModel owner);
+  public IOwnerModel? Save(IOwnerModel owner);
 
   public List<IOwnerModel> FindAll();
 

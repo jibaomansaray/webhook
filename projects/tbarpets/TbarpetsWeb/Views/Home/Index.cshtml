@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center-off">
+    <h1 class="display-4">Get started</h1>
+    <div class="row">
+        <div class="col-8">
+            <h2>Image here</h2>
+        </div>
+        <div class="col-4">
+            <h3>Setup a new account</h3>
+            <form method="post" asp-area="" asp-controller="Form" asp-action="Step1">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                    <button type="submit" class="btn btn-primary">Next >></button>
+            </form>
+        </div>
+    </div>
+</div>

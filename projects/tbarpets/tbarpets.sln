@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsConsole", "Tbarpets
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsContract", "TbarpetsContract\TbarpetsContract.csproj", "{3BE254C1-B49D-45E9-9BBC-524680AC898A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbarpetsWeb", "TbarpetsWeb\TbarpetsWeb.csproj", "{9492B1F6-B04A-4093-A3F4-6408515DAFE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BE254C1-B49D-45E9-9BBC-524680AC898A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9492B1F6-B04A-4093-A3F4-6408515DAFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9492B1F6-B04A-4093-A3F4-6408515DAFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9492B1F6-B04A-4093-A3F4-6408515DAFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9492B1F6-B04A-4093-A3F4-6408515DAFE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

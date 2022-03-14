@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Pets";
+}
+
+<div class="text-center-off">
+    <h1 class="display-4">Manage Pets</h1>
+    <div class="row">
+        <div class="col-6">
+          <h2>Create or update existing record</h2>
+            <form asp-controller="Form" asp-action="Step3" method="post">
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" id="email" name="email" value="@ViewData["email"]">
+                    @if (((int)ViewData["petId"]) > 0)
+                    {
+                      <label for="type" class="form-label">Type: </label>
+                      <b>@ViewData["type"]</b> <br />
+                      <input type="hidden" class="form-control" id="type" name="type" value="@ViewData["type"]">
+                    } else {
+                      <label for="type" class="form-label">Type of pet</label>
+                      <select class="form-select" name="type" id="type" aria-label="Select pet type">
+                          <option value="alpaca">Alpaca</option>
+                          <option value="ant-farm">Ant Farm</option>
+                          <option value="bird">Bird</option>
+                          <option value="cat">Cat</option>
+                          <option value="dog">Dog</option>
+                          <option value="fish">Fish</option>
+                          <option value="gecko">Gecko</option>
+                          <option value="guinea-pig">Guinea Peg</option>
+                        </select>
+                    }
+                    <label for="count" class="form-label">Count</label>
+                    <input type="number" class="form-control" id="count" name="count" value="@ViewData["count"]" required aria-describedby="count">
+                    <div id="count" class="form-text">How many of this pet you have?</div>
+                </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-6">
+          <h2>Existing Pets</h2>
+          @if (((List<Datastore.Models.PetModel>) ViewData["pets"]).Count > 0)
+          {
+              <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Count</th>
+                <th scope="col"><div class="text-end">Action</div></th>
+              </tr>
+            </thead>
+
+            <tbody>
+               @foreach (var pet in (List<Datastore.Models.PetModel>) ViewData["pets"])
+               {
+                <tr>
+                  <td>@pet.Type</td>
+                  <td>@pet.Count</td>
+                <td>
+                  <div class="text-end">
+                    <a class="btn btn-primary" href="/Form/ShowPets/@ViewData["email"]/@pet.Id">Edit<a> &nbsp;
+                    <!--<button type="button" class="btn btn-danger">Delete</button> -->
+                  </div>
+                </td>
+              </tr>
+               }
+            </tbody>
+          </table>
+          } else {
+             <b>Nothing yet</b>
+          }
+        </div>
+    </div>
+</div>

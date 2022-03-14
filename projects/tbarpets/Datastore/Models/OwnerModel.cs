@@ -4,13 +4,33 @@ namespace Datastore.Models;
 
 public class OwnerModel: IOwnerModel
 {
-  private List<PetModel> pets = new List<PetModel>();
+
+  protected string _email = "";
+
+  public int Id { get; }
+  public string Email {
+    set {
+      _email = value;
+    }
+    get {
+      return _email;
+    }
+  }
+
+  public string Firstname { set; get; } = "";
+
+  public string Middlename { set; get; } = "";
+
+  public string Lastname { set; get; } = "";
+
+  public List<IPetModel> Pets { get; }
 
   public OwnerModel()
   {
     Firstname = "";
     Middlename = "";
     Lastname = "";
+    Pets = new List<IPetModel>();
   }
 
   public OwnerModel(string email, string firstname, string middlename, string lastname)
@@ -19,11 +39,22 @@ public class OwnerModel: IOwnerModel
     Firstname = firstname;
     Middlename = middlename;
     Lastname = lastname;
+    Pets = new List<IPetModel>();
   }
 
    public OwnerModel AppendPet(PetModel pet)
    {
-    pets.Add(pet);
+    Pets.Add(pet);
     return this;
+  }
+
+  public IPetModel AddPet(IPetModel pet) {
+    Pets.Add(pet);
+    return pet;
+  }
+
+  public IPetModel RemovePet(IPetModel pet) {
+    // @todo remove pet from list
+    return pet;
   }
 }

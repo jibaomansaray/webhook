@@ -17,18 +17,17 @@ CREATE TABLE `owners` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `owners` (`id`, `email`, `firstname`, `middlename`, `lastname`) VALUES
-(1,	'foo@example.com',	'Foo',	'Bar',	'FooBar'),
-(2,	'foo@example.com',	'Foo2',	'Bar2',	'FooBar2');
 
 DROP TABLE IF EXISTS `pets`;
 CREATE TABLE `pets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ower_id` int(11) NOT NULL,
+  `owner_id` bigint(20) NOT NULL,
   `type` varchar(255) NOT NULL,
   `count` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `pets_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owners` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
--- 2022-03-12 03:24:12
+-- 2022-03-14 06:22:37

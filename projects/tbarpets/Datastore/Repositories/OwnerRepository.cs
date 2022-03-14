@@ -32,9 +32,23 @@ public class OwnerRepository: IOwnerRepository
     return new OwnerRepository();
   }
 
-  public IOwnerModel Save(IOwnerModel owner)
+  public IOwnerModel? Save(IOwnerModel owner)
   {
-    return owner;
+    string topic = "tbarpets:owner_created";
+    string sql = $"INSERT INTO `owners` (`email`, `firstname`, `middlename`, `lastname`) VALUES ('{owner.Email}', '{owner.Firstname}', '{owner.Middlename}', '{owner.Lastname}')";
+    if(owner.Id > 0) {
+      topic = "tbarpets:owner_updated";
+      sql = $"UPDATE `owners` SET `email` = '{owner.Email}', `firstname` = '{owner.Firstname}',`middlename` = '{owner.Middlename}', `lastname` = '{owner.Lastname}' WHERE `id` = '{owner.Id}'";
+    }
+    _con.Execute(sql);
+
+    var ownerObj = FindOneByEmail(owner.Email);
+
+    if(ownerObj != null) {
+      Datastore.DispatchToWebhook<IOwnerModel>(topic, ownerObj);
+    }
+
+    return ownerObj;
   }
 
   public List<IOwnerModel> FindAll()
