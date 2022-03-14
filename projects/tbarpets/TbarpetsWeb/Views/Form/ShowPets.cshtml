@@ -3,10 +3,10 @@
 }
 
 <div class="text-center-off">
-    <h1 class="display-4">Manage Pets</h1>
+    <h1 class="display-4">Manage your pets</h1>
     <div class="row">
         <div class="col-6">
-          <h2>Create or update existing record</h2>
+          <h3>Create or update existing record</h3>
             <form asp-controller="Form" asp-action="Step3" method="post">
                 <div class="mb-3">
                     <input type="hidden" class="form-control" id="email" name="email" value="@ViewData["email"]">
@@ -36,7 +36,7 @@
             </form>
         </div>
         <div class="col-6">
-          <h2>Existing Pets</h2>
+          <h3>Existing Pets</h3>
           @if (((List<Datastore.Models.PetModel>) ViewData["pets"]).Count > 0)
           {
               <table class="table table-striped">

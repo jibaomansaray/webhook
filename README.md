@@ -32,3 +32,7 @@ Dev environment using docker containers to run various servers and services
 
 # Important
 - Make sure your fake domain are recorded in your hosts file
+
+
+# Credits
+- Pets image from: https://10topmovers.com/moving-with-pets-short-tutorial/

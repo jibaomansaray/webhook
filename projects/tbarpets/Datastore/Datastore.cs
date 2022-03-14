@@ -7,7 +7,7 @@ public class Datastore
 {
   private static readonly HttpClient client = new HttpClient();
 
-  private static readonly string url = "https://httpdump.io/ex_je";
+  private static readonly string url = "http://nodejs:3001/api/dispatches/669f78874b74051e6d331b96";
 
   public static async Task DispatchToWebhook<T>(string topic, T payload)
   {
