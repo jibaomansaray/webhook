@@ -15,3 +15,5 @@ docker/redis/data
 docker/postgres/data
 docker/nginx/sites/*_name.conf
 vendor/
+bin/
+obj/
