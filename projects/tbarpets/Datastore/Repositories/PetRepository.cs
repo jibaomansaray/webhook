@@ -1,30 +1,27 @@
 using System;
+using System.Data;
 using System.Collections;
 using Datastore.Models;
-using MySql.Data.MySqlClient;
+using TbarpetsContract.Repositories;
+using TbarpetsContract.Models;
 using Dapper;
 
 namespace Datastore.Repositories;
 
-public class PetRepository
+public class PetRepository: IPetRepository
 {
-  private MySqlConnection _con;
+  private IDbConnection _con;
 
-   public PetRepository()
+   public PetRepository(IDbConnection con)
    {
-    _con = new MySqlConnection("Server=db;UserId=root;Password=dbpassword;Database=dotnetpets");
+    _con = con;
    }
-   public static PetRepository GetInstance()
-   {
-    return new PetRepository();
-  }
-
-  public PetModel CreatePet()
+  public IPetModel CreatePet()
   {
     return new PetModel();
   }
 
-  public PetModel? Save(PetModel pet)
+  public IPetModel? Save(IPetModel pet)
   {
     string topic = "tbarpets:pet_created";
     string sql = $"INSERT INTO `pets` (`owner_id`, `type`, `count`) VALUES ('{pet.OwnerId}', '{pet.Type}', '{pet.Count}');";
@@ -39,15 +36,15 @@ public class PetRepository
     pet = (pet.Id > 0) ? pet : FindByOwnerIdAndPetType(pet.OwnerId, pet.Type);
 
     if(pet != null) {
-      Datastore.DispatchToWebhook<PetModel>(topic, pet);
+      Datastore.DispatchToWebhook<IPetModel>(topic, pet);
     }
 
     return pet;
   }
 
-  public List<PetModel> FindAll()
+  public List<IPetModel> FindAll()
   {
-    List<PetModel> collection = new();
+    List<IPetModel> collection = new();
     collection.Add(CreatePet());
     collection.Add(CreatePet());
     collection.Add(CreatePet());
@@ -55,7 +52,7 @@ public class PetRepository
     return collection;
   }
 
-  public PetModel? FindById(int id)
+  public IPetModel? FindById(int id)
   {
     string sql = $"select * from pets where id ={id} limit 1";
     List<PetModel> pets = _con.Query<PetModel>(sql).ToList();
@@ -64,9 +61,9 @@ public class PetRepository
   }
 
 
-  public List<PetModel> FindAllByOwnerEmail(string email)
+  public List<IPetModel> FindAllByOwnerEmail(string email)
   {
-    List<PetModel> collection = new();
+    List<IPetModel> collection = new();
     collection.Add(CreatePet());
     collection.Add(CreatePet());
     collection.Add(CreatePet());
@@ -74,14 +71,15 @@ public class PetRepository
 
     return collection;
   }
-  public List<PetModel> FindAllByOwnerId(int ownerId)
+  public List<IPetModel> FindAllByOwnerId(int ownerId)
   {
     string sql = $"select * from pets where owner_id ={ownerId}";
-    List<PetModel> pets = _con.Query<PetModel>(sql).ToList();
+    List<IPetModel> pets = _con.Query<PetModel>(sql).ToList<IPetModel>();
+    Console.WriteLine($"total: {pets.Count.ToString()}");
     return pets;
   }
 
-  public PetModel? FindByOwnerIdAndPetType(int ownerId, string type)
+  public IPetModel? FindByOwnerIdAndPetType(int ownerId, string type)
   {
     string sql = $"select * from pets where owner_id ={ownerId} and type='{type}' limit 1";
     List<PetModel> pets = _con.Query<PetModel>(sql).ToList();

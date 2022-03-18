@@ -1,7 +1,7 @@
 using Dapper;
 using Datastore.Models;
-using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.Collections;
 using TbarpetsContract.Repositories;
 using TbarpetsContract.Models;
@@ -12,11 +12,11 @@ public class OwnerRepository: IOwnerRepository
 {
 
   private List<string> fakeNames;
-  private MySqlConnection _con;
+  private IDbConnection _con;
 
-  public OwnerRepository()
+  public OwnerRepository(IDbConnection con)
   {
-    _con = new MySqlConnection("Server=db;UserId=root;Password=dbpassword;Database=dotnetpets");
+    _con = con;
 
     fakeNames = new List<string>();
     fakeNames.Add("John1");
@@ -25,11 +25,6 @@ public class OwnerRepository: IOwnerRepository
     fakeNames.Add("Mary1");
     fakeNames.Add("A34ed");
     fakeNames.Add("CDE");
-  }
-
-  public static OwnerRepository GetInstance()
-  {
-    return new OwnerRepository();
   }
 
   public IOwnerModel? Save(IOwnerModel owner)

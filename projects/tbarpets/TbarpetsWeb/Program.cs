@@ -3,7 +3,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+Datastore.Datastore.RegisterServices(builder.Services);
+
 var app = builder.Build();
+
+ var config = app.Services.GetRequiredService<IConfiguration>();
+
+    foreach (var c in config.AsEnumerable())
+    {
+        System.Console.WriteLine(c.Key + " = " + c.Value);
+    }
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

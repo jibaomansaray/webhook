@@ -14,14 +14,14 @@ public class FormController : Controller
 
   private readonly ILogger<FormController> _logger;
 
-  private readonly OwnerRepository _ownerRepo;
-  private readonly PetRepository _petRepo;
+  private readonly IOwnerRepository _ownerRepo;
+  private readonly IPetRepository _petRepo;
 
-  public FormController(ILogger<FormController> logger)
+  public FormController(ILogger<FormController> logger, IOwnerRepository ownerRepo, IPetRepository petRepo)
   {
     _logger = logger;
-    _ownerRepo = OwnerRepository.GetInstance();
-    _petRepo = PetRepository.GetInstance();
+    _ownerRepo = ownerRepo;
+    _petRepo = petRepo;
   }
 
   public IActionResult Step1(string email)
@@ -70,7 +70,7 @@ public class FormController : Controller
     ViewData["petId"] = petId;
 
     IOwnerModel owner = _ownerRepo.FindOneByEmail(email);
-    List<PetModel> pets = (owner != null) ? _petRepo.FindAllByOwnerId(owner.Id) : new List<PetModel>();
+    List<IPetModel> pets = (owner != null) ? _petRepo.FindAllByOwnerId(owner.Id) : new List<IPetModel>();
 
     if (petId > 0 && pets.Count > 0)
     {
@@ -97,8 +97,8 @@ public class FormController : Controller
     IOwnerModel owner = _ownerRepo.FindOneByEmail(email);
 
     if(owner != null) {
-      PetModel pet = _petRepo.FindByOwnerIdAndPetType(owner.Id, type);
-      pet = (pet != null) ? pet : new();
+      IPetModel pet = _petRepo.FindByOwnerIdAndPetType(owner.Id, type);
+      pet = (pet != null) ? pet : _petRepo.CreatePet();
       pet.OwnerId = owner.Id;
       pet.Count = count;
       pet.Type = type;
